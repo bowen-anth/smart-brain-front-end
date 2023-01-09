@@ -9,7 +9,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 
-const API_KEY = `${process.env.REACT_APP_KEY}`; //not secure in react front-end
+const API_KEY = `${process.env.REACT_APP_KEY}`;
 
 const initialState = {
   input: '',
@@ -63,7 +63,6 @@ class App extends Component {
   };
 
   onInputChange = (event) => {
-    console.log(API_KEY)
     this.setState({ input: event.target.value });
   };
 

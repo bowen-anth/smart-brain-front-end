@@ -9,7 +9,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 
-// const API_KEY = `${process.env.REACT_APP_KEY}`; //not secure in react front-end
+const API_KEY = `${process.env.REACT_APP_KEY}`; //not secure in react front-end
 
 const initialState = {
   input: '',

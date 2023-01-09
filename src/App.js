@@ -63,6 +63,7 @@ class App extends Component {
   };
 
   onInputChange = (event) => {
+    console.log(API_KEY)
     this.setState({ input: event.target.value });
   };
 

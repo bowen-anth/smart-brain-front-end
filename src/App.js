@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import ParticlesBg from 'particles-bg'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Navigation from './components/Navigation/Navigation';
@@ -9,7 +9,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import './App.css';
 
-const API_KEY = `${process.env.REACT_APP_KEY}`;
+// const API_KEY = `${process.env.REACT_APP_KEY}`;
 
 const initialState = {
   input: '',
@@ -66,6 +66,12 @@ class App extends Component {
     this.setState({ input: event.target.value });
   };
 
+  // onKeyPress = (event) => {
+  //   if (event.key === "Enter") {
+  //     this.onButtonSubmit();
+  //   }
+  // };
+
   onButtonSubmit = () => {
     const raw = JSON.stringify({
       user_app_id: {
@@ -119,6 +125,84 @@ class App extends Component {
   };
 
 
+
+
+  //   useKey = (key, cb) => {
+  //     const callbackRef = useRef(cb);
+
+  //     useEffect(() => {
+  //       callbackRef.current = cb;
+  //     })
+
+  //     useEffect(() => {
+
+  //       function handle(event) {
+  //         if(event.code === key) {
+  //           callbackRef.current(event);
+  //         }
+  //       }
+
+  //       document.addEventListener("keypress", handle)
+  //       return () => document.removeEventListener("keypress", handle)
+  //     }, [key]);
+  //   }
+
+  //   function handleEnter() {
+  //     console.log("Enter key is pressed");
+  //     const raw = JSON.stringify({
+  //       user_app_id: {
+  //         user_id: "guitarizt",
+  //         app_id: "my-first-application",
+  //       },
+  //       inputs: [
+  //         {
+  //           data: {
+  //             image: {
+  //               url: this.state.input,
+  //             },
+  //           },
+            
+  //         },
+  //       ],
+  //     });
+
+  //   fetch(
+  //     "https://api.clarifai.com/v2/models/f76196b43bbd45c99b4f3cd8e8b40a8a/outputs",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         Authorization: API_KEY,
+  //       },
+  //       body: raw,
+  //     }
+  //   )
+  //   .then((response) => response.text())
+  //   .then((response) => {
+  //     if (response){
+  //       fetch('https://intense-plains-82472.herokuapp.com/image', {
+  //         method: 'put',
+  //         headers: {'Content-Type': 'application/json'},
+  //         body: JSON.stringify({
+  //           id: this.state.user.id
+  //         })
+  //       })
+  //       .then(response => response.json())
+  //       .then(count => {
+  //         this.setState(Object.assign(this.state.user, {entries: count}));
+  //       });
+  //     }
+  //     this.displayFaceBox(this.calculateFaceLocation(response));
+  //   })
+  //   .catch((error) => console.log('error', error));
+  //     // .then((response) => response.text())
+  //     // .then((result) => this.displayFaceBox(this.calculateFaceLocation(result)))
+  //     // .catch((error) => console.log("error", error));
+  // };
+  //   }
+
+  //   useKey("Enter", handleEnter);
+
   onRouteChange = (route) => {
     if (route === 'signout') {
       this.setState(initialState)
@@ -143,6 +227,7 @@ class App extends Component {
               />
               <ImageLinkForm
                 onInputChange={this.onInputChange}
+                // onKeyPress={this.onKeyPress}
                 onButtonSubmit={this.onButtonSubmit}
               />
               <FaceRecognition box={this.state.box} imageUrl={this.state.input} />
@@ -158,5 +243,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
